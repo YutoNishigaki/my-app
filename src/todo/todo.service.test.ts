@@ -1,14 +1,15 @@
 import { NotFoundException } from '@nestjs/common';
+import { beforeEach, describe, expect, it, vi, type Mock } from 'vitest';
 import { TodoService } from './todo.service';
 import { PrismaService } from '../prisma/prisma.service';
 
 const createPrismaMock = () => ({
   todo: {
-    create: jest.fn(),
-    findMany: jest.fn(),
-    findUnique: jest.fn(),
-    update: jest.fn(),
-    delete: jest.fn(),
+    create: vi.fn(),
+    findMany: vi.fn(),
+    findUnique: vi.fn(),
+    update: vi.fn(),
+    delete: vi.fn(),
   },
 });
 
@@ -30,7 +31,7 @@ describe('TodoService', () => {
 
   it('should return a todo when it exists', async () => {
     const todo = { id: 1, title: 'Test', description: '', completed: false };
-    (prisma.todo.findUnique as jest.Mock).mockResolvedValue(todo);
+    (prisma.todo.findUnique as Mock).mockResolvedValue(todo);
 
     const result = await service.findOne(1);
 
@@ -39,14 +40,14 @@ describe('TodoService', () => {
   });
 
   it('should throw when todo is not found', async () => {
-    (prisma.todo.findUnique as jest.Mock).mockResolvedValue(null);
+    (prisma.todo.findUnique as Mock).mockResolvedValue(null);
 
     await expect(service.findOne(999)).rejects.toBeInstanceOf(NotFoundException);
   });
 
   it('should update after ensuring todo exists', async () => {
     const todo = { id: 2, title: 'Test', description: '', completed: false };
-    (prisma.todo.findUnique as jest.Mock).mockResolvedValue(todo);
+    (prisma.todo.findUnique as Mock).mockResolvedValue(todo);
 
     await service.update(2, { title: 'Updated' });
 
@@ -58,7 +59,7 @@ describe('TodoService', () => {
 
   it('should delete after ensuring todo exists', async () => {
     const todo = { id: 3, title: 'Test', description: '', completed: false };
-    (prisma.todo.findUnique as jest.Mock).mockResolvedValue(todo);
+    (prisma.todo.findUnique as Mock).mockResolvedValue(todo);
 
     await service.remove(3);
 
