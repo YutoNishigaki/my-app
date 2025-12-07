@@ -4,8 +4,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "nest start",
-    "build": "nest build",
+    "dev": "concurrently -k \"node scripts/dev.mjs\" \"nodemon --watch dist --ext js --signal SIGTERM --delay 200ms --exec 'node --enable-source-maps dist/main.js'\"",
+    "build": "node scripts/build.mjs",
     "lint": "eslint --fix \"src/**/*.ts\"",
     "format": "prettier --write \"src/**/*.ts\"",
     "test": "vitest run",
@@ -29,10 +29,14 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.7",
     "@vitest/coverage-v8": "^4.0.15",
+    "concurrently": "^9.1.2",
+    "esbuild": "^0.24.2",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.2",
+    "fast-glob": "^3.3.2",
     "globals": "^16.0.0",
+    "nodemon": "^3.1.9",
     "prettier": "^3.4.2",
     "source-map-support": "^0.5.21",
     "ts-loader": "^9.5.2",
@@ -42,6 +46,5 @@
     "typescript-eslint": "^8.20.0",
     "unplugin-swc": "^1.5.1",
     "vitest": "^4.0.15"
-  },
-  "type": "module"
+  }
 }
