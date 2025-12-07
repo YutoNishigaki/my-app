@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { AppResolver } from './app.resolver';
-import { AppService } from './app.service';
+import { AppResolver } from './app.resolver.js';
+import { AppService } from './app.service.js';
 
 describe('AppResolver', () => {
   let resolver: AppResolver;
