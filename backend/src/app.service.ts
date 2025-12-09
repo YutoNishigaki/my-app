@@ -1,12 +1,9 @@
 import { Injectable } from '@nestjs/common';
-
-export type GreetingResponse = {
-  message: string;
-};
+import { Greeting } from './greeting/greeting.model';
 
 @Injectable()
 export class AppService {
-  getHello(): GreetingResponse {
+  getHello(): Greeting {
     return { message: 'Hello API' };
   }
 }
