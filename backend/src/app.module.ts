@@ -6,6 +6,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { GreetingResolver } from './greeting/greeting.resolver';
 import { HealthController } from './health.controller';
+import { PrismaModule } from './prisma/prisma.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -15,6 +17,8 @@ import { HealthController } from './health.controller';
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
+    PrismaModule,
+    UserModule,
   ],
   controllers: [AppController, HealthController],
   providers: [AppService, GreetingResolver],
