@@ -1,16 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { HealthController } from './health.controller';
+import { HealthCheckController } from './health-check.controller';
 
 describe('HealthController', () => {
-  let controller: HealthController;
+  let controller: HealthCheckController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [HealthController],
+      controllers: [HealthCheckController],
     }).compile();
 
-    controller = module.get<HealthController>(HealthController);
+    controller = module.get<HealthCheckController>(HealthCheckController);
   });
 
   it('should return ok status with timestamp', () => {

@@ -1,11 +1,11 @@
+import { GreetingResolver, GreetingService } from '@/features/greeting';
+import { UserRepository, UserResolver, UsersService } from '@/features/user';
+import { DatabaseClient } from '@/lib/database-client';
+import { HealthCheckController } from '@/features/health-check';
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { ApolloDriver, type ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { GreetingResolver } from './greeting/greeting.resolver';
-import { HealthController } from './health.controller';
 
 @Module({
   imports: [
@@ -16,7 +16,14 @@ import { HealthController } from './health.controller';
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
   ],
-  controllers: [AppController, HealthController],
-  providers: [AppService, GreetingResolver],
+  controllers: [HealthCheckController],
+  providers: [
+    DatabaseClient,
+    UserRepository,
+    UsersService,
+    UserResolver,
+    GreetingService,
+    GreetingResolver,
+  ],
 })
 export class AppModule {}

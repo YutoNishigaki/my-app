@@ -1,13 +1,13 @@
 import { Query, Resolver } from '@nestjs/graphql';
-import { AppService } from '../app.service';
-import { Greeting } from './greeting.model';
+import { Greeting } from './greeting.schema';
+import { GreetingService } from './greeting.service';
 
 @Resolver(() => Greeting)
 export class GreetingResolver {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly greetingService: GreetingService) {}
 
   @Query(() => Greeting, { description: '基本的な挨拶を返却する' })
   hello(): Greeting {
-    return this.appService.getHello();
+    return this.greetingService.getHello();
   }
 }
