@@ -6,7 +6,7 @@ export type HealthCheck = {
 };
 
 @Controller('health')
-export class HealthController {
+export class HealthCheckController {
   @Get()
   getHealth(): HealthCheck {
     return { status: 'ok', timestamp: new Date().toISOString() };

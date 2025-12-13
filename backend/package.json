@@ -4,13 +4,15 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "nest start --watch",
-    "build": "nest build",
+    "dev": "NODE_OPTIONS=\"--require tsconfig-paths/register\" nest start --watch",
+    "build": "NODE_OPTIONS=\"--require tsconfig-paths/register\" nest build",
     "lint": "eslint --fix \"src/**/*.ts\"",
     "format": "prettier --write \"src/**/*.ts\"",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate": "npx prisma migrate dev"
   },
   "dependencies": {
     "@apollo/server": "^5.2.0",
@@ -20,6 +22,8 @@
     "@nestjs/core": "^11.0.1",
     "@nestjs/graphql": "^13.2.0",
     "@nestjs/platform-express": "^11.0.1",
+    "@prisma/adapter-better-sqlite3": "^7.1.0",
+    "@prisma/client": "^7.1.0",
     "graphql": "^16.12.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1"
@@ -35,12 +39,14 @@
     "@types/node": "^22.10.7",
     "@vitest/coverage-v8": "^4.0.15",
     "concurrently": "^9.1.2",
+    "dotenv": "^17.2.3",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.2",
     "globals": "^16.0.0",
     "nodemon": "^3.1.9",
     "prettier": "^3.4.2",
+    "prisma": "^7.1.0",
     "source-map-support": "^0.5.21",
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
