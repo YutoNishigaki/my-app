@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="260" viewBox="0 0 800 260" role="img" aria-label="JWT token lifecycle overview">
+  <style>
+    .box { fill:#f2f6ff; stroke:#6b8bdb; stroke-width:2; rx:8; ry:8; }
+    .title { font: 700 16px 'Arial', sans-serif; fill:#1f2d3d; }
+    .text { font: 13px 'Arial', sans-serif; fill:#1f2d3d; }
+    .arrow { marker-end:url(#arrowhead); stroke:#6b8bdb; stroke-width:2; }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6b8bdb" />
+    </marker>
+  </defs>
+  <rect x="20" y="40" width="190" height="70" class="box" />
+  <text x="35" y="70" class="title">GraphQL Resolver</text>
+  <text x="35" y="95" class="text">AuthMutation (signup/login)</text>
+
+  <rect x="280" y="40" width="190" height="70" class="box" />
+  <text x="295" y="70" class="title">Auth Service</text>
+  <text x="295" y="95" class="text">hash, verify, sign JWT</text>
+
+  <rect x="540" y="40" width="220" height="70" class="box" />
+  <text x="555" y="70" class="title">Token Store</text>
+  <text x="555" y="95" class="text">Refresh Token 発行・無効化</text>
+
+  <rect x="20" y="160" width="740" height="70" class="box" />
+  <text x="35" y="190" class="title">Guard & Context</text>
+  <text x="35" y="215" class="text">Access Token を検証し、user を context に載せて Role Guard で判定</text>
+
+  <line x1="210" y1="75" x2="280" y2="75" class="arrow" />
+  <line x1="470" y1="75" x2="540" y2="75" class="arrow" />
+  <line x1="650" y1="110" x2="650" y2="160" class="arrow" />
+  <line x1="370" y1="110" x2="370" y2="160" class="arrow" />
+  <line x1="150" y1="110" x2="150" y2="160" class="arrow" />
+
+  <text x="225" y="65" class="text">credential</text>
+  <text x="485" y="65" class="text">tokens</text>
+  <text x="660" y="135" class="text">refresh</text>
+  <text x="380" y="135" class="text">access</text>
+  <text x="160" y="135" class="text">mutation</text>
+</svg>
