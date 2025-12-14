@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="260" viewBox="0 0 560 260" role="img" aria-labelledby="title desc">
+  <title id="title">ドメインモデル境界図</title>
+  <desc id="desc">Organization 集約と User 集約、Subscription の関連を示す簡易図</desc>
+  <defs>
+    <style>
+      .box { fill: #f5f7fb; stroke: #4b5563; stroke-width: 1.5; rx: 6; }
+      .title { font: 14px sans-serif; fill: #111827; font-weight: 600; }
+      .text { font: 12px sans-serif; fill: #111827; }
+      .line { stroke: #2563eb; stroke-width: 1.5; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L6,3 z" fill="#2563eb" />
+    </marker>
+  </defs>
+  <rect x="24" y="30" width="230" height="180" class="box" fill="#eef2ff" stroke="#4338ca" />
+  <text x="40" y="52" class="title">Organization Aggregate</text>
+  <rect x="48" y="72" width="180" height="36" class="box" />
+  <text x="60" y="94" class="text">Organization (root)</text>
+  <rect x="48" y="120" width="180" height="36" class="box" />
+  <text x="60" y="142" class="text">OrgUser</text>
+  <rect x="48" y="168" width="180" height="36" class="box" />
+  <text x="60" y="190" class="text">Subscription</text>
+
+  <rect x="310" y="70" width="220" height="120" class="box" fill="#ecfeff" stroke="#0ea5e9" />
+  <text x="326" y="92" class="title">User Aggregate</text>
+  <rect x="330" y="110" width="180" height="32" class="box" />
+  <text x="344" y="130" class="text">User (root)</text>
+  <rect x="330" y="150" width="180" height="32" class="box" />
+  <text x="344" y="170" class="text">Credential</text>
+
+  <line x1="228" y1="138" x2="310" y2="138" class="line" />
+  <text x="246" y="130" class="text">links</text>
+  <line x1="228" y1="186" x2="310" y2="186" class="line" />
+  <text x="246" y="178" class="text">grants</text>
+</svg>
