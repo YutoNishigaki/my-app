@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="340" viewBox="0 0 760 340" role="img" aria-labelledby="title desc">
+  <title id="title">Layered architecture overview</title>
+  <desc id="desc">Resolver to Application to Domain to Infrastructure with Shared utilities</desc>
+  <style>
+    text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; fill: #0f172a; }
+    rect { rx: 10; ry: 10; }
+    .layer { fill: #e2e8f0; stroke: #0f172a; stroke-width: 2; }
+    .shared { fill: #d9f99d; stroke: #3f6212; stroke-width: 2; }
+    .arrow { marker-end: url(#arrowhead); stroke: #0f172a; stroke-width: 2; fill: none; }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#0f172a" />
+    </marker>
+  </defs>
+  <rect class="layer" x="40" y="40" width="160" height="70" />
+  <text x="120" y="82" text-anchor="middle">Resolver</text>
+  <rect class="layer" x="230" y="40" width="160" height="70" />
+  <text x="310" y="82" text-anchor="middle">Application</text>
+  <rect class="layer" x="420" y="40" width="160" height="70" />
+  <text x="500" y="82" text-anchor="middle">Domain</text>
+  <rect class="layer" x="610" y="40" width="110" height="70" />
+  <text x="665" y="82" text-anchor="middle">Infrastructure</text>
+  <rect class="shared" x="150" y="200" width="460" height="90" />
+  <text x="380" y="247" text-anchor="middle">Shared Utilities / DTO / Mappers</text>
+  <line class="arrow" x1="200" y1="75" x2="230" y2="75" />
+  <line class="arrow" x1="390" y1="75" x2="420" y2="75" />
+  <line class="arrow" x1="580" y1="75" x2="610" y2="75" />
+  <line class="arrow" x1="200" y1="95" x2="230" y2="95" />
+  <line class="arrow" x1="390" y1="95" x2="420" y2="95" />
+  <line class="arrow" x1="580" y1="95" x2="610" y2="95" />
+  <line class="arrow" x1="120" y1="110" x2="380" y2="220" />
+  <line class="arrow" x1="310" y1="110" x2="380" y2="220" />
+  <line class="arrow" x1="500" y1="110" x2="380" y2="220" />
+  <line class="arrow" x1="665" y1="110" x2="610" y2="245" />
+  <text x="120" y="30" text-anchor="middle" font-size="14" fill="#475569">Auth / Guard / GQL DTO</text>
+  <text x="310" y="30" text-anchor="middle" font-size="14" fill="#475569">UseCase / Tx Boundary</text>
+  <text x="500" y="30" text-anchor="middle" font-size="14" fill="#475569">Entities / Services</text>
+  <text x="665" y="30" text-anchor="middle" font-size="14" fill="#475569">Prisma Repos / I/O</text>
+</svg>
