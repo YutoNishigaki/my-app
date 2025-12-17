@@ -20,17 +20,17 @@ describe('UserResolver', () => {
   });
 
   it('getUser: should call service.user with id', async () => {
-    const user = { id: 1, email: 'a@example.com' };
+    const user = { id: 'user-1', email: 'a@example.com', role: 'USER' };
     service.user.mockResolvedValue(user);
 
-    const result = await resolver.getUser(1);
+    const result = await resolver.getUser('user-1');
 
-    expect(service.user).toHaveBeenCalledWith({ id: 1 });
+    expect(service.user).toHaveBeenCalledWith({ id: 'user-1' });
     expect(result).toBe(user);
   });
 
   it('getUsers: should pass pagination args', async () => {
-    const users = [{ id: 1, email: 'a@example.com' }];
+    const users = [{ id: 'user-1', email: 'a@example.com', role: 'USER' }];
     service.users.mockResolvedValue(users);
 
     const result = await resolver.getUsers(1, 5);
@@ -40,7 +40,7 @@ describe('UserResolver', () => {
   });
 
   it('createUser: should call service.createUser', async () => {
-    const created = { id: 1, email: 'b@example.com' };
+    const created = { id: 'user-1', email: 'b@example.com', role: 'USER' };
     service.createUser.mockResolvedValue(created);
 
     const result = await resolver.createUser({
@@ -56,25 +56,25 @@ describe('UserResolver', () => {
   });
 
   it('updateUser: should call service.updateUser with id and data', async () => {
-    const updated = { id: 1, email: 'c@example.com' };
+    const updated = { id: 'user-1', email: 'c@example.com', role: 'USER' };
     service.updateUser.mockResolvedValue(updated);
 
-    const result = await resolver.updateUser(1, { name: 'C' });
+    const result = await resolver.updateUser('user-1', { name: 'C' });
 
     expect(service.updateUser).toHaveBeenCalledWith({
-      where: { id: 1 },
+      where: { id: 'user-1' },
       data: { name: 'C' },
     });
     expect(result).toBe(updated);
   });
 
   it('deleteUser: should call service.deleteUser', async () => {
-    const deleted = { id: 1, email: 'd@example.com' };
+    const deleted = { id: 'user-1', email: 'd@example.com', role: 'USER' };
     service.deleteUser.mockResolvedValue(deleted);
 
-    const result = await resolver.deleteUser(1);
+    const result = await resolver.deleteUser('user-1');
 
-    expect(service.deleteUser).toHaveBeenCalledWith({ id: 1 });
+    expect(service.deleteUser).toHaveBeenCalledWith({ id: 'user-1' });
     expect(result).toBe(deleted);
   });
 });
