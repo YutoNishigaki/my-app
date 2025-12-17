@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="360" viewBox="0 0 720 360" role="img" aria-labelledby="title desc">
+  <title id="title">データモデル概要</title>
+  <desc id="desc">User、Role、AuthRefreshToken の関連を示す簡易図</desc>
+  <style>
+    .box { fill: #f3f6fa; stroke: #4a6fa5; stroke-width: 2; rx: 8; ry: 8; }
+    .title { font: bold 16px 'Noto Sans JP', Arial, sans-serif; fill: #1f3557; }
+    .text { font: 14px 'Noto Sans JP', Arial, sans-serif; fill: #1f3557; }
+    .arrow { stroke: #4a6fa5; stroke-width: 2; marker-end: url(#arrowhead); }
+    .note { fill: #fff7e6; stroke: #f0ad4e; stroke-width: 1.5; rx: 6; ry: 6; }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4a6fa5" />
+    </marker>
+  </defs>
+  <rect class="box" x="40" y="40" width="200" height="120" />
+  <text class="title" x="140" y="70" text-anchor="middle">User</text>
+  <text class="text" x="60" y="95">- id (cuid/UUID)</text>
+  <text class="text" x="60" y="115">- email (unique)</text>
+  <text class="text" x="60" y="135">- role (enum)</text>
+  <text class="text" x="60" y="155">- createdAt/updatedAt</text>
+
+  <rect class="box" x="280" y="200" width="200" height="120" />
+  <text class="title" x="380" y="230" text-anchor="middle">AuthRefreshToken</text>
+  <text class="text" x="300" y="255">- tokenId (unique)</text>
+  <text class="text" x="300" y="275">- userId (FK)</text>
+  <text class="text" x="300" y="295">- expiresAt/revokedAt</text>
+
+  <rect class="box" x="500" y="40" width="160" height="120" />
+  <text class="title" x="580" y="70" text-anchor="middle">Role</text>
+  <text class="text" x="520" y="95">- id/name</text>
+  <text class="text" x="520" y="115">- description</text>
+  <text class="text" x="520" y="135">- createdAt/updatedAt</text>
+
+  <line class="arrow" x1="240" y1="100" x2="500" y2="100" />
+  <line class="arrow" x1="140" y1="160" x2="340" y2="200" />
+
+  <rect class="note" x="40" y="250" width="220" height="70" />
+  <text class="text" x="50" y="275">・PK はアプリ生成 ID を採用</text>
+  <text class="text" x="50" y="295">・FK は CASCADE/RESTRICT を基本</text>
+  <text class="text" x="50" y="315">・論理削除は原則なし</text>
+</svg>
