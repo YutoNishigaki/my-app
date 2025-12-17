@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="240" viewBox="0 0 720 240" role="img" aria-labelledby="title desc">
+  <title id="title">Resolver to UseCase Flow</title>
+  <desc id="desc">GraphQL resolver delegating to use cases, domain and repository layers with guards and DataLoader.</desc>
+  <defs>
+    <style>
+      .node { fill: #eef2ff; stroke: #6366f1; stroke-width: 2; rx: 8; ry: 8; }
+      .db { fill: #ecfeff; stroke: #06b6d4; stroke-width: 2; }
+      .text { font: 14px 'Inter', 'Segoe UI', sans-serif; fill: #0f172a; }
+      .arrow { marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#334155" />
+    </marker>
+  </defs>
+  <rect class="node" x="30" y="40" width="120" height="60" />
+  <text class="text" x="90" y="75" text-anchor="middle">Client</text>
+
+  <rect class="node" x="190" y="40" width="150" height="60" />
+  <text class="text" x="265" y="75" text-anchor="middle">GraphQL Resolver</text>
+
+  <rect class="node" x="380" y="40" width="140" height="60" />
+  <text class="text" x="450" y="65" text-anchor="middle">UseCase</text>
+  <text class="text" x="450" y="85" text-anchor="middle">(Application)</text>
+
+  <rect class="node" x="560" y="40" width="130" height="60" />
+  <text class="text" x="625" y="65" text-anchor="middle">Domain</text>
+  <text class="text" x="625" y="85" text-anchor="middle">Service</text>
+
+  <rect class="node" x="280" y="150" width="150" height="60" />
+  <text class="text" x="355" y="185" text-anchor="middle">DataLoader</text>
+
+  <rect class="db" x="500" y="150" width="170" height="60" />
+  <text class="text" x="585" y="175" text-anchor="middle">Prisma Repository</text>
+  <text class="text" x="585" y="195" text-anchor="middle">(SQLite / PostgreSQL)</text>
+
+  <line x1="150" y1="70" x2="190" y2="70" stroke="#334155" stroke-width="2" class="arrow" />
+  <text class="text" x="170" y="62" text-anchor="middle">Guard</text>
+
+  <line x1="340" y1="70" x2="380" y2="70" stroke="#334155" stroke-width="2" class="arrow" />
+  <text class="text" x="360" y="62" text-anchor="middle">DTO→Command</text>
+
+  <line x1="520" y1="70" x2="560" y2="70" stroke="#334155" stroke-width="2" class="arrow" />
+  <text class="text" x="540" y="62" text-anchor="middle">Domain API</text>
+
+  <line x1="450" y1="100" x2="355" y2="150" stroke="#0ea5e9" stroke-width="2" class="arrow" />
+  <text class="text" x="400" y="135" text-anchor="middle">batch fetch</text>
+
+  <line x1="430" y1="180" x2="500" y2="180" stroke="#334155" stroke-width="2" class="arrow" />
+  <text class="text" x="465" y="172" text-anchor="middle">Repository I/F</text>
+</svg>
