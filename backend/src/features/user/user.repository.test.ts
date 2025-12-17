@@ -25,8 +25,8 @@ describe('UserRepository', () => {
   });
 
   it('findUnique: should forward where', async () => {
-    const where = { id: 1 };
-    const user = { id: 1, email: 'a@example.com' };
+    const where = { id: 'user-1' };
+    const user = { id: 'user-1', email: 'a@example.com', role: 'USER' };
     (
       databaseClient.user.findUnique as unknown as ReturnType<typeof vi.fn>
     ).mockResolvedValue(user);
@@ -38,7 +38,7 @@ describe('UserRepository', () => {
   });
 
   it('findMany: should forward params', async () => {
-    const users = [{ id: 1, email: 'a@example.com' }];
+    const users = [{ id: 'user-1', email: 'a@example.com', role: 'USER' }];
     (
       databaseClient.user.findMany as unknown as ReturnType<typeof vi.fn>
     ).mockResolvedValue(users);
@@ -53,7 +53,7 @@ describe('UserRepository', () => {
   });
 
   it('create: should forward data', async () => {
-    const created = { id: 1, email: 'b@example.com' };
+    const created = { id: 'user-1', email: 'b@example.com', role: 'USER' };
     (
       databaseClient.user.create as unknown as ReturnType<typeof vi.fn>
     ).mockResolvedValue(created);
@@ -67,33 +67,33 @@ describe('UserRepository', () => {
   });
 
   it('update: should forward where and data', async () => {
-    const updated = { id: 1, email: 'c@example.com' };
+    const updated = { id: 'user-1', email: 'c@example.com', role: 'USER' };
     (
       databaseClient.user.update as unknown as ReturnType<typeof vi.fn>
     ).mockResolvedValue(updated);
 
     const result = await repository.update({
-      where: { id: 1 },
+      where: { id: 'user-1' },
       data: { email: 'c@example.com' },
     });
 
     expect(databaseClient.user.update).toHaveBeenCalledWith({
-      where: { id: 1 },
+      where: { id: 'user-1' },
       data: { email: 'c@example.com' },
     });
     expect(result).toBe(updated);
   });
 
   it('delete: should forward where', async () => {
-    const deleted = { id: 1, email: 'd@example.com' };
+    const deleted = { id: 'user-1', email: 'd@example.com', role: 'USER' };
     (
       databaseClient.user.delete as unknown as ReturnType<typeof vi.fn>
     ).mockResolvedValue(deleted);
 
-    const result = await repository.delete({ id: 1 });
+    const result = await repository.delete({ id: 'user-1' });
 
     expect(databaseClient.user.delete).toHaveBeenCalledWith({
-      where: { id: 1 },
+      where: { id: 'user-1' },
     });
     expect(result).toBe(deleted);
   });

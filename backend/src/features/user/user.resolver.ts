@@ -11,7 +11,7 @@ export class UserResolver {
     nullable: true,
     description: 'ID で単一ユーザーを取得する',
   })
-  getUser(@Args('id', { type: () => Int }) id: number) {
+  getUser(@Args('id', { type: () => String }) id: string) {
     return this.usersService.user({ id });
   }
 
@@ -33,14 +33,14 @@ export class UserResolver {
 
   @Mutation(() => User, { description: 'ユーザー情報を更新する' })
   updateUser(
-    @Args('id', { type: () => Int }) id: number,
+    @Args('id', { type: () => String }) id: string,
     @Args('data') data: UpdateUserInput,
   ) {
     return this.usersService.updateUser({ where: { id }, data });
   }
 
   @Mutation(() => User, { description: 'ユーザーを削除する' })
-  deleteUser(@Args('id', { type: () => Int }) id: number) {
+  deleteUser(@Args('id', { type: () => String }) id: string) {
     return this.usersService.deleteUser({ id });
   }
 }
