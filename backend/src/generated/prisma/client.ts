@@ -41,3 +41,18 @@ export { Prisma }
  * 
  */
 export type User = Prisma.UserModel
+/**
+ * Model Room
+ * 
+ */
+export type Room = Prisma.RoomModel
+/**
+ * Model CleaningTask
+ * 
+ */
+export type CleaningTask = Prisma.CleaningTaskModel
+/**
+ * Model TaskHistory
+ * 
+ */
+export type TaskHistory = Prisma.TaskHistoryModel
