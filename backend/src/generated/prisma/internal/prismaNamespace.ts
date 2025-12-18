@@ -383,7 +383,10 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  User: 'User'
+  User: 'User',
+  Room: 'Room',
+  CleaningTask: 'CleaningTask',
+  TaskHistory: 'TaskHistory'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -399,7 +402,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user"
+    modelProps: "user" | "room" | "cleaningTask" | "taskHistory"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -477,6 +480,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Room: {
+      payload: Prisma.$RoomPayload<ExtArgs>
+      fields: Prisma.RoomFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RoomFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoomPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RoomFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoomPayload>
+        }
+        findFirst: {
+          args: Prisma.RoomFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoomPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RoomFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoomPayload>
+        }
+        findMany: {
+          args: Prisma.RoomFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoomPayload>[]
+        }
+        create: {
+          args: Prisma.RoomCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoomPayload>
+        }
+        createMany: {
+          args: Prisma.RoomCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RoomCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoomPayload>[]
+        }
+        delete: {
+          args: Prisma.RoomDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoomPayload>
+        }
+        update: {
+          args: Prisma.RoomUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoomPayload>
+        }
+        deleteMany: {
+          args: Prisma.RoomDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RoomUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RoomUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoomPayload>[]
+        }
+        upsert: {
+          args: Prisma.RoomUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoomPayload>
+        }
+        aggregate: {
+          args: Prisma.RoomAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRoom>
+        }
+        groupBy: {
+          args: Prisma.RoomGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RoomGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RoomCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RoomCountAggregateOutputType> | number
+        }
+      }
+    }
+    CleaningTask: {
+      payload: Prisma.$CleaningTaskPayload<ExtArgs>
+      fields: Prisma.CleaningTaskFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CleaningTaskFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CleaningTaskPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CleaningTaskFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CleaningTaskPayload>
+        }
+        findFirst: {
+          args: Prisma.CleaningTaskFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CleaningTaskPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CleaningTaskFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CleaningTaskPayload>
+        }
+        findMany: {
+          args: Prisma.CleaningTaskFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CleaningTaskPayload>[]
+        }
+        create: {
+          args: Prisma.CleaningTaskCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CleaningTaskPayload>
+        }
+        createMany: {
+          args: Prisma.CleaningTaskCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CleaningTaskCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CleaningTaskPayload>[]
+        }
+        delete: {
+          args: Prisma.CleaningTaskDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CleaningTaskPayload>
+        }
+        update: {
+          args: Prisma.CleaningTaskUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CleaningTaskPayload>
+        }
+        deleteMany: {
+          args: Prisma.CleaningTaskDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CleaningTaskUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CleaningTaskUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CleaningTaskPayload>[]
+        }
+        upsert: {
+          args: Prisma.CleaningTaskUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CleaningTaskPayload>
+        }
+        aggregate: {
+          args: Prisma.CleaningTaskAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCleaningTask>
+        }
+        groupBy: {
+          args: Prisma.CleaningTaskGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CleaningTaskGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CleaningTaskCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CleaningTaskCountAggregateOutputType> | number
+        }
+      }
+    }
+    TaskHistory: {
+      payload: Prisma.$TaskHistoryPayload<ExtArgs>
+      fields: Prisma.TaskHistoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TaskHistoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskHistoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TaskHistoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskHistoryPayload>
+        }
+        findFirst: {
+          args: Prisma.TaskHistoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskHistoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TaskHistoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskHistoryPayload>
+        }
+        findMany: {
+          args: Prisma.TaskHistoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskHistoryPayload>[]
+        }
+        create: {
+          args: Prisma.TaskHistoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskHistoryPayload>
+        }
+        createMany: {
+          args: Prisma.TaskHistoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TaskHistoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskHistoryPayload>[]
+        }
+        delete: {
+          args: Prisma.TaskHistoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskHistoryPayload>
+        }
+        update: {
+          args: Prisma.TaskHistoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskHistoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.TaskHistoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TaskHistoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TaskHistoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskHistoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.TaskHistoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskHistoryPayload>
+        }
+        aggregate: {
+          args: Prisma.TaskHistoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTaskHistory>
+        }
+        groupBy: {
+          args: Prisma.TaskHistoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskHistoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TaskHistoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskHistoryCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -525,6 +750,54 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+export const RoomScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  icon: 'icon',
+  color: 'color',
+  archivedAt: 'archivedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RoomScalarFieldEnum = (typeof RoomScalarFieldEnum)[keyof typeof RoomScalarFieldEnum]
+
+
+export const CleaningTaskScalarFieldEnum = {
+  id: 'id',
+  roomId: 'roomId',
+  userId: 'userId',
+  title: 'title',
+  description: 'description',
+  cycleType: 'cycleType',
+  customIntervalDays: 'customIntervalDays',
+  priority: 'priority',
+  estimatedMinutes: 'estimatedMinutes',
+  nextScheduledAt: 'nextScheduledAt',
+  lastCompletedAt: 'lastCompletedAt',
+  skipCount: 'skipCount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CleaningTaskScalarFieldEnum = (typeof CleaningTaskScalarFieldEnum)[keyof typeof CleaningTaskScalarFieldEnum]
+
+
+export const TaskHistoryScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  userId: 'userId',
+  status: 'status',
+  memo: 'memo',
+  attachmentUrl: 'attachmentUrl',
+  completedAt: 'completedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type TaskHistoryScalarFieldEnum = (typeof TaskHistoryScalarFieldEnum)[keyof typeof TaskHistoryScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -569,9 +842,30 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
 
 
 /**
+ * Reference to a field of type 'CycleType'
+ */
+export type EnumCycleTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CycleType'>
+    
+
+
+/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+/**
+ * Reference to a field of type 'TaskStatus'
+ */
+export type EnumTaskStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TaskStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
 
 /**
@@ -670,6 +964,9 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
+  room?: Prisma.RoomOmit
+  cleaningTask?: Prisma.CleaningTaskOmit
+  taskHistory?: Prisma.TaskHistoryOmit
 }
 
 /* Types for Logging */

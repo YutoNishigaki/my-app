@@ -19,7 +19,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.1.0",
   "engineVersion": "ab635e6b9d606fa5c8fb8b1a7f909c3c3c1c98ba",
   "activeProvider": "sqlite",
-  "inlineSchema": "generator client {\n  provider     = \"prisma-client\"\n  output       = \"../src/generated/prisma\"\n  moduleFormat = \"cjs\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n}\n\nmodel User {\n  id        String   @id @default(cuid())\n  email     String   @unique\n  name      String?\n  role      Role     @default(USER)\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nenum Role {\n  USER\n  ADMIN\n}\n",
+  "inlineSchema": "generator client {\n  provider     = \"prisma-client\"\n  output       = \"../src/generated/prisma\"\n  moduleFormat = \"cjs\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n}\n\nmodel User {\n  id        String   @id @default(cuid())\n  email     String   @unique\n  name      String?\n  role      Role     @default(USER)\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  rooms         Room[]\n  cleaningTasks CleaningTask[]\n  taskHistories TaskHistory[]\n}\n\nenum Role {\n  USER\n  ADMIN\n}\n\nmodel Room {\n  id         String    @id @default(cuid())\n  userId     String\n  name       String\n  icon       String?\n  color      String?\n  archivedAt DateTime?\n  createdAt  DateTime  @default(now())\n  updatedAt  DateTime  @updatedAt\n\n  user          User           @relation(fields: [userId], references: [id])\n  cleaningTasks CleaningTask[]\n}\n\nmodel CleaningTask {\n  id                 String    @id @default(cuid())\n  roomId             String\n  userId             String\n  title              String\n  description        String?\n  cycleType          CycleType\n  customIntervalDays Int?\n  priority           Int?\n  estimatedMinutes   Int?\n  nextScheduledAt    DateTime?\n  lastCompletedAt    DateTime?\n  skipCount          Int       @default(0)\n  createdAt          DateTime  @default(now())\n  updatedAt          DateTime  @updatedAt\n\n  room      Room          @relation(fields: [roomId], references: [id])\n  user      User          @relation(fields: [userId], references: [id])\n  histories TaskHistory[]\n}\n\nmodel TaskHistory {\n  id            String     @id @default(cuid())\n  taskId        String\n  userId        String\n  status        TaskStatus\n  memo          String?\n  attachmentUrl String?\n  completedAt   DateTime\n  createdAt     DateTime   @default(now())\n\n  task CleaningTask @relation(fields: [taskId], references: [id])\n  user User         @relation(fields: [userId], references: [id])\n}\n\nenum CycleType {\n  DAILY\n  WEEKLY\n  MONTHLY\n  CUSTOM\n}\n\nenum TaskStatus {\n  DONE\n  SKIPPED\n  DELAYED\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -27,7 +27,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"Role\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"Role\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"rooms\",\"kind\":\"object\",\"type\":\"Room\",\"relationName\":\"RoomToUser\"},{\"name\":\"cleaningTasks\",\"kind\":\"object\",\"type\":\"CleaningTask\",\"relationName\":\"CleaningTaskToUser\"},{\"name\":\"taskHistories\",\"kind\":\"object\",\"type\":\"TaskHistory\",\"relationName\":\"TaskHistoryToUser\"}],\"dbName\":null},\"Room\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"icon\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"color\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"archivedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"RoomToUser\"},{\"name\":\"cleaningTasks\",\"kind\":\"object\",\"type\":\"CleaningTask\",\"relationName\":\"CleaningTaskToRoom\"}],\"dbName\":null},\"CleaningTask\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"roomId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cycleType\",\"kind\":\"enum\",\"type\":\"CycleType\"},{\"name\":\"customIntervalDays\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"priority\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"estimatedMinutes\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nextScheduledAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"lastCompletedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"skipCount\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"room\",\"kind\":\"object\",\"type\":\"Room\",\"relationName\":\"CleaningTaskToRoom\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"CleaningTaskToUser\"},{\"name\":\"histories\",\"kind\":\"object\",\"type\":\"TaskHistory\",\"relationName\":\"CleaningTaskToTaskHistory\"}],\"dbName\":null},\"TaskHistory\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"taskId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"TaskStatus\"},{\"name\":\"memo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"attachmentUrl\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"completedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"task\",\"kind\":\"object\",\"type\":\"CleaningTask\",\"relationName\":\"CleaningTaskToTaskHistory\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"TaskHistoryToUser\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -182,6 +182,36 @@ export interface PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.room`: Exposes CRUD operations for the **Room** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Rooms
+    * const rooms = await prisma.room.findMany()
+    * ```
+    */
+  get room(): Prisma.RoomDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.cleaningTask`: Exposes CRUD operations for the **CleaningTask** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CleaningTasks
+    * const cleaningTasks = await prisma.cleaningTask.findMany()
+    * ```
+    */
+  get cleaningTask(): Prisma.CleaningTaskDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.taskHistory`: Exposes CRUD operations for the **TaskHistory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TaskHistories
+    * const taskHistories = await prisma.taskHistory.findMany()
+    * ```
+    */
+  get taskHistory(): Prisma.TaskHistoryDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {

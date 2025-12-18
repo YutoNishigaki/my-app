@@ -14,3 +14,22 @@ export const Role = {
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const CycleType = {
+  DAILY: 'DAILY',
+  WEEKLY: 'WEEKLY',
+  MONTHLY: 'MONTHLY',
+  CUSTOM: 'CUSTOM'
+} as const
+
+export type CycleType = (typeof CycleType)[keyof typeof CycleType]
+
+
+export const TaskStatus = {
+  DONE: 'DONE',
+  SKIPPED: 'SKIPPED',
+  DELAYED: 'DELAYED'
+} as const
+
+export type TaskStatus = (typeof TaskStatus)[keyof typeof TaskStatus]

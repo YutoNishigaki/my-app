@@ -189,6 +189,9 @@ export type UserWhereInput = {
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  rooms?: Prisma.RoomListRelationFilter
+  cleaningTasks?: Prisma.CleaningTaskListRelationFilter
+  taskHistories?: Prisma.TaskHistoryListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -198,6 +201,9 @@ export type UserOrderByWithRelationInput = {
   role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  rooms?: Prisma.RoomOrderByRelationAggregateInput
+  cleaningTasks?: Prisma.CleaningTaskOrderByRelationAggregateInput
+  taskHistories?: Prisma.TaskHistoryOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -210,6 +216,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  rooms?: Prisma.RoomListRelationFilter
+  cleaningTasks?: Prisma.CleaningTaskListRelationFilter
+  taskHistories?: Prisma.TaskHistoryListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -243,6 +252,9 @@ export type UserCreateInput = {
   role?: $Enums.Role
   createdAt?: Date | string
   updatedAt?: Date | string
+  rooms?: Prisma.RoomCreateNestedManyWithoutUserInput
+  cleaningTasks?: Prisma.CleaningTaskCreateNestedManyWithoutUserInput
+  taskHistories?: Prisma.TaskHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -252,6 +264,9 @@ export type UserUncheckedCreateInput = {
   role?: $Enums.Role
   createdAt?: Date | string
   updatedAt?: Date | string
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutUserInput
+  cleaningTasks?: Prisma.CleaningTaskUncheckedCreateNestedManyWithoutUserInput
+  taskHistories?: Prisma.TaskHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -261,6 +276,9 @@ export type UserUpdateInput = {
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rooms?: Prisma.RoomUpdateManyWithoutUserNestedInput
+  cleaningTasks?: Prisma.CleaningTaskUpdateManyWithoutUserNestedInput
+  taskHistories?: Prisma.TaskHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -270,6 +288,9 @@ export type UserUncheckedUpdateInput = {
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutUserNestedInput
+  cleaningTasks?: Prisma.CleaningTaskUncheckedUpdateManyWithoutUserNestedInput
+  taskHistories?: Prisma.TaskHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -326,6 +347,11 @@ export type UserMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -342,6 +368,275 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
+export type UserCreateNestedOneWithoutRoomsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRoomsInput, Prisma.UserUncheckedCreateWithoutRoomsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoomsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutRoomsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRoomsInput, Prisma.UserUncheckedCreateWithoutRoomsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoomsInput
+  upsert?: Prisma.UserUpsertWithoutRoomsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRoomsInput, Prisma.UserUpdateWithoutRoomsInput>, Prisma.UserUncheckedUpdateWithoutRoomsInput>
+}
+
+export type UserCreateNestedOneWithoutCleaningTasksInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCleaningTasksInput, Prisma.UserUncheckedCreateWithoutCleaningTasksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCleaningTasksInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCleaningTasksNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCleaningTasksInput, Prisma.UserUncheckedCreateWithoutCleaningTasksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCleaningTasksInput
+  upsert?: Prisma.UserUpsertWithoutCleaningTasksInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCleaningTasksInput, Prisma.UserUpdateWithoutCleaningTasksInput>, Prisma.UserUncheckedUpdateWithoutCleaningTasksInput>
+}
+
+export type UserCreateNestedOneWithoutTaskHistoriesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTaskHistoriesInput, Prisma.UserUncheckedCreateWithoutTaskHistoriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTaskHistoriesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutTaskHistoriesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTaskHistoriesInput, Prisma.UserUncheckedCreateWithoutTaskHistoriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTaskHistoriesInput
+  upsert?: Prisma.UserUpsertWithoutTaskHistoriesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTaskHistoriesInput, Prisma.UserUpdateWithoutTaskHistoriesInput>, Prisma.UserUncheckedUpdateWithoutTaskHistoriesInput>
+}
+
+export type UserCreateWithoutRoomsInput = {
+  id?: string
+  email: string
+  name?: string | null
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cleaningTasks?: Prisma.CleaningTaskCreateNestedManyWithoutUserInput
+  taskHistories?: Prisma.TaskHistoryCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutRoomsInput = {
+  id?: string
+  email: string
+  name?: string | null
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cleaningTasks?: Prisma.CleaningTaskUncheckedCreateNestedManyWithoutUserInput
+  taskHistories?: Prisma.TaskHistoryUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutRoomsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRoomsInput, Prisma.UserUncheckedCreateWithoutRoomsInput>
+}
+
+export type UserUpsertWithoutRoomsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRoomsInput, Prisma.UserUncheckedUpdateWithoutRoomsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRoomsInput, Prisma.UserUncheckedCreateWithoutRoomsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRoomsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRoomsInput, Prisma.UserUncheckedUpdateWithoutRoomsInput>
+}
+
+export type UserUpdateWithoutRoomsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cleaningTasks?: Prisma.CleaningTaskUpdateManyWithoutUserNestedInput
+  taskHistories?: Prisma.TaskHistoryUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRoomsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cleaningTasks?: Prisma.CleaningTaskUncheckedUpdateManyWithoutUserNestedInput
+  taskHistories?: Prisma.TaskHistoryUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutCleaningTasksInput = {
+  id?: string
+  email: string
+  name?: string | null
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  rooms?: Prisma.RoomCreateNestedManyWithoutUserInput
+  taskHistories?: Prisma.TaskHistoryCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutCleaningTasksInput = {
+  id?: string
+  email: string
+  name?: string | null
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutUserInput
+  taskHistories?: Prisma.TaskHistoryUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutCleaningTasksInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCleaningTasksInput, Prisma.UserUncheckedCreateWithoutCleaningTasksInput>
+}
+
+export type UserUpsertWithoutCleaningTasksInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCleaningTasksInput, Prisma.UserUncheckedUpdateWithoutCleaningTasksInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCleaningTasksInput, Prisma.UserUncheckedCreateWithoutCleaningTasksInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCleaningTasksInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCleaningTasksInput, Prisma.UserUncheckedUpdateWithoutCleaningTasksInput>
+}
+
+export type UserUpdateWithoutCleaningTasksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rooms?: Prisma.RoomUpdateManyWithoutUserNestedInput
+  taskHistories?: Prisma.TaskHistoryUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCleaningTasksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutUserNestedInput
+  taskHistories?: Prisma.TaskHistoryUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutTaskHistoriesInput = {
+  id?: string
+  email: string
+  name?: string | null
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  rooms?: Prisma.RoomCreateNestedManyWithoutUserInput
+  cleaningTasks?: Prisma.CleaningTaskCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutTaskHistoriesInput = {
+  id?: string
+  email: string
+  name?: string | null
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutUserInput
+  cleaningTasks?: Prisma.CleaningTaskUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutTaskHistoriesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTaskHistoriesInput, Prisma.UserUncheckedCreateWithoutTaskHistoriesInput>
+}
+
+export type UserUpsertWithoutTaskHistoriesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTaskHistoriesInput, Prisma.UserUncheckedUpdateWithoutTaskHistoriesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTaskHistoriesInput, Prisma.UserUncheckedCreateWithoutTaskHistoriesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTaskHistoriesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTaskHistoriesInput, Prisma.UserUncheckedUpdateWithoutTaskHistoriesInput>
+}
+
+export type UserUpdateWithoutTaskHistoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rooms?: Prisma.RoomUpdateManyWithoutUserNestedInput
+  cleaningTasks?: Prisma.CleaningTaskUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTaskHistoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutUserNestedInput
+  cleaningTasks?: Prisma.CleaningTaskUncheckedUpdateManyWithoutUserNestedInput
+}
+
+
+/**
+ * Count Type UserCountOutputType
+ */
+
+export type UserCountOutputType = {
+  rooms: number
+  cleaningTasks: number
+  taskHistories: number
+}
+
+export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  rooms?: boolean | UserCountOutputTypeCountRoomsArgs
+  cleaningTasks?: boolean | UserCountOutputTypeCountCleaningTasksArgs
+  taskHistories?: boolean | UserCountOutputTypeCountTaskHistoriesArgs
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserCountOutputType
+   */
+  select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRoomsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RoomWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCleaningTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CleaningTaskWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTaskHistoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TaskHistoryWhereInput
+}
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -351,6 +646,10 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   role?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  rooms?: boolean | Prisma.User$roomsArgs<ExtArgs>
+  cleaningTasks?: boolean | Prisma.User$cleaningTasksArgs<ExtArgs>
+  taskHistories?: boolean | Prisma.User$taskHistoriesArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -381,10 +680,22 @@ export type UserSelectScalar = {
 }
 
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  rooms?: boolean | Prisma.User$roomsArgs<ExtArgs>
+  cleaningTasks?: boolean | Prisma.User$cleaningTasksArgs<ExtArgs>
+  taskHistories?: boolean | Prisma.User$taskHistoriesArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
-  objects: {}
+  objects: {
+    rooms: Prisma.$RoomPayload<ExtArgs>[]
+    cleaningTasks: Prisma.$CleaningTaskPayload<ExtArgs>[]
+    taskHistories: Prisma.$TaskHistoryPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     email: string
@@ -786,6 +1097,9 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  rooms<T extends Prisma.User$roomsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$roomsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  cleaningTasks<T extends Prisma.User$cleaningTasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$cleaningTasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CleaningTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  taskHistories<T extends Prisma.User$taskHistoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$taskHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -838,6 +1152,10 @@ export type UserFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which User to fetch.
    */
   where: Prisma.UserWhereUniqueInput
@@ -856,6 +1174,10 @@ export type UserFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which User to fetch.
    */
   where: Prisma.UserWhereUniqueInput
@@ -873,6 +1195,10 @@ export type UserFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * Filter, which User to fetch.
    */
@@ -922,6 +1248,10 @@ export type UserFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which User to fetch.
    */
   where?: Prisma.UserWhereInput
@@ -970,6 +1300,10 @@ export type UserFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which Users to fetch.
    */
   where?: Prisma.UserWhereInput
@@ -1012,6 +1346,10 @@ export type UserCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * The data needed to create a User.
    */
@@ -1058,6 +1396,10 @@ export type UserUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * The data needed to update a User.
    */
@@ -1125,6 +1467,10 @@ export type UserUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * The filter to search for the User to update in case it exists.
    */
   where: Prisma.UserWhereUniqueInput
@@ -1151,6 +1497,10 @@ export type UserDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter which User to delete.
    */
   where: Prisma.UserWhereUniqueInput
@@ -1171,6 +1521,78 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
+ * User.rooms
+ */
+export type User$roomsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Room
+   */
+  select?: Prisma.RoomSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Room
+   */
+  omit?: Prisma.RoomOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RoomInclude<ExtArgs> | null
+  where?: Prisma.RoomWhereInput
+  orderBy?: Prisma.RoomOrderByWithRelationInput | Prisma.RoomOrderByWithRelationInput[]
+  cursor?: Prisma.RoomWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RoomScalarFieldEnum | Prisma.RoomScalarFieldEnum[]
+}
+
+/**
+ * User.cleaningTasks
+ */
+export type User$cleaningTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CleaningTask
+   */
+  select?: Prisma.CleaningTaskSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CleaningTask
+   */
+  omit?: Prisma.CleaningTaskOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CleaningTaskInclude<ExtArgs> | null
+  where?: Prisma.CleaningTaskWhereInput
+  orderBy?: Prisma.CleaningTaskOrderByWithRelationInput | Prisma.CleaningTaskOrderByWithRelationInput[]
+  cursor?: Prisma.CleaningTaskWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CleaningTaskScalarFieldEnum | Prisma.CleaningTaskScalarFieldEnum[]
+}
+
+/**
+ * User.taskHistories
+ */
+export type User$taskHistoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TaskHistory
+   */
+  select?: Prisma.TaskHistorySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TaskHistory
+   */
+  omit?: Prisma.TaskHistoryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TaskHistoryInclude<ExtArgs> | null
+  where?: Prisma.TaskHistoryWhereInput
+  orderBy?: Prisma.TaskHistoryOrderByWithRelationInput | Prisma.TaskHistoryOrderByWithRelationInput[]
+  cursor?: Prisma.TaskHistoryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TaskHistoryScalarFieldEnum | Prisma.TaskHistoryScalarFieldEnum[]
+}
+
+/**
  * User without action
  */
 export type UserDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1182,4 +1604,8 @@ export type UserDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
 }

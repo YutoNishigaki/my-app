@@ -50,7 +50,10 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  User: 'User'
+  User: 'User',
+  Room: 'Room',
+  CleaningTask: 'CleaningTask',
+  TaskHistory: 'TaskHistory'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -76,6 +79,54 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const RoomScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  icon: 'icon',
+  color: 'color',
+  archivedAt: 'archivedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RoomScalarFieldEnum = (typeof RoomScalarFieldEnum)[keyof typeof RoomScalarFieldEnum]
+
+
+export const CleaningTaskScalarFieldEnum = {
+  id: 'id',
+  roomId: 'roomId',
+  userId: 'userId',
+  title: 'title',
+  description: 'description',
+  cycleType: 'cycleType',
+  customIntervalDays: 'customIntervalDays',
+  priority: 'priority',
+  estimatedMinutes: 'estimatedMinutes',
+  nextScheduledAt: 'nextScheduledAt',
+  lastCompletedAt: 'lastCompletedAt',
+  skipCount: 'skipCount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CleaningTaskScalarFieldEnum = (typeof CleaningTaskScalarFieldEnum)[keyof typeof CleaningTaskScalarFieldEnum]
+
+
+export const TaskHistoryScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  userId: 'userId',
+  status: 'status',
+  memo: 'memo',
+  attachmentUrl: 'attachmentUrl',
+  completedAt: 'completedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type TaskHistoryScalarFieldEnum = (typeof TaskHistoryScalarFieldEnum)[keyof typeof TaskHistoryScalarFieldEnum]
 
 
 export const SortOrder = {
