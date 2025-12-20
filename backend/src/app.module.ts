@@ -1,4 +1,3 @@
-import { GreetingModule } from '@/features/greeting';
 import { HealthCheckModule } from '@/features/health-check';
 import { HousekeepingModule } from '@/features/housekeeping';
 import { UserModule } from '@/features/user';
@@ -18,7 +17,6 @@ import { GraphQLModule } from '@nestjs/graphql';
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
     HealthCheckModule,
-    GreetingModule,
     HousekeepingModule,
     UserModule,
   ],
