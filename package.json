@@ -1,0 +1,8 @@
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "schema:cp": "cp backend/src/generated/graphql/schema.gql frontend/src/graphql/schema.gql"
+  }
+}

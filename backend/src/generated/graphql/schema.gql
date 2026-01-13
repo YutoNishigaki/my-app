@@ -1,0 +1,217 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type CleaningTask {
+  createdAt: DateTime!
+  customIntervalDays: Int
+  cycleType: CycleType!
+  description: String
+  estimatedMinutes: Int
+  id: ID!
+  lastCompletedAt: DateTime
+  nextScheduledAt: DateTime
+  priority: Int
+  roomId: String!
+  skipCount: Int!
+  title: String!
+  updatedAt: DateTime!
+  userId: String!
+}
+
+input CompleteTaskInput {
+  attachmentUrl: String
+  completedAt: DateTime
+  memo: String
+  status: TaskStatus!
+  taskId: String!
+  userId: String!
+}
+
+input CreateCleaningTaskInput {
+  customIntervalDays: Int
+  cycleType: CycleType!
+  description: String
+  estimatedMinutes: Int
+  nextScheduledAt: DateTime
+  priority: Int
+  roomId: String!
+  title: String!
+  userId: String!
+}
+
+input CreateRoomInput {
+  color: String
+  icon: String
+  name: String!
+  userId: String!
+}
+
+input CreateUserInput {
+  email: String!
+  name: String
+
+  """
+  省略時は USER として作成されます
+  """
+  role: Role
+}
+
+"""
+タスクの周期種別
+"""
+enum CycleType {
+  CUSTOM
+  DAILY
+  MONTHLY
+  WEEKLY
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  """
+  部屋をアーカイブする
+  """
+  archiveRoom(roomId: String!): Room!
+
+  """
+  タスクの進捗を履歴に記録し、次回予定を更新する
+  """
+  completeCleaningTask(input: CompleteTaskInput!): CleaningTask!
+
+  """
+  掃除タスクを新規作成する
+  """
+  createCleaningTask(data: CreateCleaningTaskInput!): CleaningTask!
+
+  """
+  部屋を新規作成する
+  """
+  createRoom(data: CreateRoomInput!): Room!
+
+  """
+  ユーザーを新規作成する
+  """
+  createUser(data: CreateUserInput!): User!
+
+  """
+  ユーザーを削除する
+  """
+  deleteUser(id: String!): User!
+
+  """
+  アーカイブ済みの部屋を復元する
+  """
+  restoreRoom(roomId: String!): Room!
+
+  """
+  タスクの設定を更新する
+  """
+  updateCleaningTask(
+    data: UpdateCleaningTaskInput!
+    taskId: String!
+  ): CleaningTask!
+
+  """
+  部屋の表示設定や名称を更新する
+  """
+  updateRoom(data: UpdateRoomInput!, roomId: String!): Room!
+
+  """
+  ユーザー情報を更新する
+  """
+  updateUser(data: UpdateUserInput!, id: String!): User!
+}
+
+type Query {
+  """
+  部屋に紐づく掃除タスクを取得する
+  """
+  cleaningTasks(roomId: String!): [CleaningTask!]!
+
+  """
+  ユーザーの部屋一覧を取得する
+  """
+  rooms(includeArchived: Boolean, sortBy: RoomSort, userId: String!): [Room!]!
+
+  """
+  ID で単一ユーザーを取得する
+  """
+  user(id: String!): User
+
+  """
+  ユーザー一覧を取得する
+  """
+  users(skip: Int, take: Int): [User!]!
+}
+
+"""
+ユーザーが持つ権限ロール
+"""
+enum Role {
+  ADMIN
+  USER
+}
+
+type Room {
+  archivedAt: DateTime
+  color: String
+  createdAt: DateTime!
+  icon: String
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+  userId: String!
+}
+
+"""
+部屋一覧のソート条件
+"""
+enum RoomSort {
+  LAST_ACTIVITY
+  NAME
+}
+
+"""
+タスク履歴のステータス
+"""
+enum TaskStatus {
+  DELAYED
+  DONE
+  SKIPPED
+}
+
+input UpdateCleaningTaskInput {
+  customIntervalDays: Int
+  cycleType: CycleType
+  description: String
+  estimatedMinutes: Int
+  nextScheduledAt: DateTime
+  priority: Int
+  title: String
+}
+
+input UpdateRoomInput {
+  color: String
+  icon: String
+  name: String
+}
+
+input UpdateUserInput {
+  email: String
+  name: String
+  role: Role
+}
+
+type User {
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  name: String
+  role: Role!
+  updatedAt: DateTime!
+}
